@@ -91,6 +91,7 @@ Requirements:
 - mono
 - jdk-java
 - ghc
+- go
 
 Archlinux::
 

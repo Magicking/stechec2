@@ -30,6 +30,7 @@ ifndef NOCOLORS
   quiet_cmd_ocamlo    = [1;33mcaml   $< -> $@[0m
   quiet_cmd_hsc2hs    = [1;32mhsc2hs $< -> $@[0m
   quiet_cmd_ghc       = [1;33mghc    $^ -> $@[0m
+  quiet_cmd_go        = [1;33mgo     $^ -> $@[0m
   quiet_cmd_ld_shared = [1;36mlib    $@[0m
   quiet_cmd_clean     = [1;35mclean[0m
   quiet_cmd_distclean = [1;35mdistclean[0m
@@ -43,6 +44,7 @@ else
   quiet_cmd_ocamlo    = OCAML   $@
   quiet_cmd_hsc2hs    = HSC2HS  $@
   quiet_cmd_ghc       = GHC     $@
+  quiet_cmd_go        = GO      $@
   quiet_cmd_ld_shared = LINK    $@
   quiet_cmd_clean     = CLEAN   objects
   quiet_cmd_distclean = CLEAN   targets
@@ -65,11 +67,14 @@ CPP    = $(CROSS)cpp
 JAVAC  = javac
 OCAMLC = $(CROSS)ocamlc
 GHC    = $(CROSS)ghc
+GO     = $(CROSS)go
 HSC2HS = $(CROSS)hsc2hs
 LD     = $(CROSS)ld
 
 OCAML_LIBS     = -L`ocamlc -where` -Wl,-R`ocamlc -where` -lcamlrun_shared -lcurses -lm
 OCAML_CFLAGS   = -O2 -I`ocamlc -where`
+
+GO_FLAGS  = -o build=shared
 
 HASKELL_CFLAGS = -O2 -I`$(GHC) --print-libdir`/include
 
